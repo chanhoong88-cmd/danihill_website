@@ -265,3 +265,9 @@ section{scroll-margin-top:84px}
 .why p{font-size:15.5px;color:var(--ink-2)}
 @media (max-width:900px){.why{grid-template-columns:repeat(2,minmax(0,1fr))}.why li:not(:nth-child(3n+1)){padding-left:0;border-left:0}.why li:nth-child(even){padding-left:24px;border-left:1px solid var(--line)}}
 @media (max-width:560px){.why{grid-template-columns:minmax(0,1fr)}.why li,.why li:nth-child(even){padding:28px 0;border-left:0}}
+
+/* Estate plan */
+.plan{display:flex;flex-direction:column;gap:clamp(36px,5vw,64px)}
+.plan figure{margin:0}
+.plan img{width:100%;height:auto;display:block;border:1px solid var(--line)}
+.plan figcaption{margin-top:12px;font-size:12px;letter-spacing:.06em;color:var(--mute)}
