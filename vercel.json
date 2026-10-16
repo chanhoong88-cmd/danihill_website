@@ -1,3 +1,16 @@
 {
-  "cleanUrls": true
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/garden-weddings", "destination": "/gallery#weddings", "permanent": true },
+    { "source": "/garden-wedding", "destination": "/gallery#weddings", "permanent": true },
+    { "source": "/indian-wedding", "destination": "/#enquire", "permanent": true },
+    { "source": "/indian-weddings", "destination": "/#enquire", "permanent": true },
+    { "source": "/family-retreat", "destination": "/residences#occasions", "permanent": true },
+    { "source": "/the-mansion", "destination": "/residences#houses", "permanent": true },
+    { "source": "/villa-dani", "destination": "/residences#houses", "permanent": true },
+    { "source": "/contact", "destination": "/#visit", "permanent": true },
+    { "source": "/contact-us", "destination": "/#visit", "permanent": true },
+    { "source": "/blank", "destination": "/", "permanent": true }
+  ]
 }
