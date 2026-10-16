@@ -145,18 +145,26 @@
       Object.keys(data).forEach(function (k) { if (k !== 'consent') payload[k] = data[k]; });
       btn.disabled = true; var label = btn.textContent; btn.textContent = 'Sending…';
       show(status, '', '');
-      fetch(ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
-        .then(function (r) { return r.json().then(function (j) { return { ok: r.ok && j.ok, j: j }; }); })
+      // Never leave the button on "Sending…": give up after 20 seconds.
+      var ctrl = w.AbortController ? new AbortController() : null;
+      var timer = setTimeout(function () { if (ctrl) ctrl.abort(); }, 20000);
+      fetch(ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload), signal: ctrl ? ctrl.signal : undefined })
+        .then(function (r) { return r.json().then(function (j) { return { ok: r.ok && j.ok, j: j }; }, function () { return { ok: false, j: {} }; }); })
         .then(function (res) {
+          clearTimeout(timer);
           if (!res.ok) throw new Error(res.j && res.j.error);
           track(SUBMIT_EVENT[type], Object.assign({ form_type: type }, safeParams(type, data)));
+          btn.textContent = 'Sent ✓';
           var done = f.parentNode.querySelector('[data-done="' + type + '"]');
           if (done) {
             var ref = done.querySelector('.ref'); if (ref) ref.textContent = res.j.lead_id || '';
-            f.hidden = true; done.hidden = false; done.focus();
+            var em = done.querySelector('.email-note');
+            if (em) em.hidden = !(data.email && res.j.email_sent);
+            setTimeout(function () { f.hidden = true; done.hidden = false; done.focus(); }, 900);
           }
         })
         .catch(function () {
+          clearTimeout(timer);
           btn.disabled = false; btn.textContent = label;
           show(status, 'Sorry, your enquiry could not be sent just now. Please try again, or message us on WhatsApp at 011-6226 5257.', 'error');
         });

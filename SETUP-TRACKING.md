@@ -16,6 +16,22 @@ Each row has a lead ID (e.g. `DH-WED-261016-A1B2`), the form fields, the campaig
 empty pipeline columns: `stage, qualified, viewing_scheduled, viewing_attended, proposal_sent,
 booking_confirmed, booking_value, notes`. The team updates these as the lead progresses.
 
+## 1b. Confirmation emails (optional, via Resend)
+When set up, the person who enquired receives a confirmation email with their details and reference
+number, and your team receives a copy of each new enquiry. Enquiries are still saved if email is not set up.
+
+1. Sign up at **resend.com** (free tier covers a small venue's volume).
+2. **Domains → Add domain** → `danihill.my`. Add the DNS records Resend shows (in Exabytes, where the
+   domain is managed) and wait until the domain shows **Verified**.
+3. **API Keys → Create API key** (sending access). Copy it.
+4. In Vercel → Environment Variables, add:
+   - `RESEND_API_KEY`: the key from step 3
+   - `MAIL_FROM`: e.g. `Dani Hill <enquiries@danihill.my>`
+   - `NOTIFY_EMAIL`: your team inbox (comma-separate several addresses)
+5. Redeploy and send a test enquiry with your own email address.
+
+Replies to the confirmation email go to the first `NOTIFY_EMAIL` address.
+
 ## 2. Analytics events (dataLayer)
 `assets/site.js` pushes these events. None contain names, phone numbers, emails or messages.
 
