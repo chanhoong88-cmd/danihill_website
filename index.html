@@ -123,6 +123,7 @@
         <a href="https://www.danihill.my/destination-weddings">Destination</a>
         <a href="https://www.danihill.my/indian-wedding">Indian</a>
       </div>
+      <a class="more" href="https://rates.danihill.my" target="_blank" rel="noopener" data-brochure="rates-and-packages" data-loc="planning">Rates &amp; packages →</a>
     </div>
     <ul class="terms">
       <li><span>Exclusivity</span><p>One wedding per day. The estate is reserved for you.</p></li>
@@ -183,12 +184,22 @@
       <h2 id="visit-title">See the estate in person</h2>
     </div>
     <div class="lead">
-      <p>Site visits are by appointment. Walk the lawn, see both houses and talk through your date with our team.</p>
+      <p>Site visits are by appointment. Walk the lawn, see both houses and talk through your date with our team. Request a time below and we'll confirm it with you.</p>
       <address style="font-style:normal;color:var(--ink)">Lot 12 &amp; 13, Puncak Dani &amp; Villa Dani<br>Gohtong Jaya, Jalan Institut Aminuddin Baki<br>69000 Genting Highlands, Pahang</address>
-      <div class="row">
-        <a class="btn btn-dark" href="https://wa.me/601162265257?text=Hi%20Dani%20Hill%2C%20I%27d%20like%20to%20book%20a%20site%20visit." target="_blank" rel="noopener">Book a Site Visit</a>
-        <a class="btn btn-line ink" href="https://www.google.com/maps/search/?api=1&amp;query=Puncak+Dani+Gohtong+Jaya+Genting+Highlands" target="_blank" rel="noopener">Directions</a>
-      </div>
+      <form class="form-light" data-form="viewing" novalidate>
+        <div class="field"><label for="v-name">Name</label><input id="v-name" name="name" autocomplete="name" placeholder="Your name" required></div>
+        <div class="field"><label for="v-phone">Phone / WhatsApp</label><input id="v-phone" name="phone" type="tel" autocomplete="tel" placeholder="e.g. 012-345 6789"></div>
+        <div class="field"><label for="v-email">Email</label><input id="v-email" name="email" type="email" autocomplete="email" placeholder="you@example.com"></div>
+        <div class="field"><label for="v-date">Preferred date</label><input id="v-date" name="visit_date" type="date"></div>
+        <div class="field"><label for="v-slot">Preferred time</label><select id="v-slot" name="visit_slot"><option>Weekday morning</option><option>Weekday afternoon</option><option>Weekend morning</option><option>Weekend afternoon</option></select></div>
+        <div class="field"><label for="v-att">Attending</label><select id="v-att" name="attending"><option>1–2</option><option>3–4</option><option>5 or more</option></select></div>
+        <div class="check"><input type="checkbox" id="v-consent" name="consent" value="yes"><label for="v-consent">I agree that Dani Hill may contact me about this enquiry, as described in the <a href="privacy.html">privacy notice</a>.</label></div>
+      <div class="hp" aria-hidden="true"><label for="v-website">Leave this empty</label><input id="v-website" name="website" tabindex="-1" autocomplete="off"></div>
+        <div class="form-foot"><button type="submit" class="btn btn-dark">Request a Viewing</button><a class="more" href="https://www.google.com/maps/search/?api=1&amp;query=Puncak+Dani+Gohtong+Jaya+Genting+Highlands" target="_blank" rel="noopener">Directions →</a></div>
+        <p class="form-status" role="status" aria-live="polite"></p>
+        <small class="form-alt">Prefer WhatsApp? <a data-wa="viewing" data-loc="visit" href="https://wa.me/601162265257" target="_blank" rel="noopener">Message us to arrange a visit</a></small>
+      </form>
+      <div class="form-done light" data-done="viewing" tabindex="-1" hidden><h3>Thank you.</h3><p>Your viewing request has been received. We'll contact you to confirm a time.</p><p class="form-ref">Reference: <span class="ref"></span></p></div>
     </div>
   </div>
 </section>
@@ -201,14 +212,20 @@
       <p>Tell us a little about your wedding and we'll reply with availability, usually within one working day.</p>
       <div class="contact"><span>WhatsApp &amp; phone</span><b>011-6226 5257</b></div>
     </div>
-    <form id="enq-form" novalidate>
-      <div class="field"><label for="f-name">Names</label><input id="f-name" autocomplete="name" placeholder="Your names"></div>
-      <div class="field"><label for="f-date">Wedding date</label><input id="f-date" type="date"></div>
-      <div class="field"><label for="f-guests">Guests</label><input id="f-guests" type="number" min="1" max="500" inputmode="numeric" placeholder="e.g. 150"></div>
-      <div class="field"><label for="f-stay">Overnight stay</label><select id="f-stay"><option>Not sure yet</option><option>Yes, the Mansion</option><option>Yes, Villa Dani</option><option>Yes, both houses</option><option>No</option></select></div>
-      <div class="field full"><label for="f-msg">Anything else</label><textarea id="f-msg" placeholder="Ceremony style, theme, planner…"></textarea></div>
-      <div class="form-foot"><a class="btn btn-light" id="wa-send" href="https://wa.me/601162265257" target="_blank" rel="noopener">Send via WhatsApp →</a><small>Opens WhatsApp with your details filled in, ready to send to our events team.</small></div>
+    <form id="enq-form" data-form="wedding" novalidate>
+      <div class="field"><label for="w-name">Names</label><input id="w-name" name="name" autocomplete="name" placeholder="Your names" required></div>
+      <div class="field"><label for="w-phone">Phone / WhatsApp</label><input id="w-phone" name="phone" type="tel" autocomplete="tel" placeholder="e.g. 012-345 6789"></div>
+      <div class="field"><label for="w-email">Email</label><input id="w-email" name="email" type="email" autocomplete="email" placeholder="you@example.com"></div>
+      <div class="field"><label for="w-date">Wedding date</label><input id="w-date" name="event_date" type="date"></div>
+      <div class="field"><label for="w-guests">Guests</label><input id="w-guests" name="guests" type="number" min="1" max="500" inputmode="numeric" placeholder="e.g. 150"></div>
+      <div class="field"><label for="w-stay">Overnight stay</label><select id="w-stay" name="stay"><option>Not sure yet</option><option>Yes, the Mansion</option><option>Yes, Villa Dani</option><option>Yes, both houses</option><option>No</option></select></div>
+      <div class="field full"><label for="w-msg">Anything else</label><textarea id="w-msg" name="message" placeholder="Ceremony style, theme, planner…"></textarea></div>
+      <div class="check"><input type="checkbox" id="w-consent" name="consent" value="yes"><label for="w-consent">I agree that Dani Hill may contact me about this enquiry, as described in the <a href="privacy.html">privacy notice</a>.</label></div>
+      <div class="hp" aria-hidden="true"><label for="w-website">Leave this empty</label><input id="w-website" name="website" tabindex="-1" autocomplete="off"></div>
+      <div class="form-foot"><button type="submit" class="btn btn-light">Check Availability →</button><small class="form-alt">Prefer WhatsApp? <a data-wa="wedding" data-loc="enquire" href="https://wa.me/601162265257" target="_blank" rel="noopener">Message our events team</a></small></div>
+      <p class="form-status" role="status" aria-live="polite"></p>
     </form>
+    <div class="form-done" data-done="wedding" tabindex="-1" hidden><h3>Thank you.</h3><p>Your enquiry has been received. Our events team will be in touch, usually within one working day.</p><p class="form-ref">Reference: <span class="ref"></span></p></div>
   </div>
 </section>
 </main>
@@ -218,26 +235,12 @@
       <a class="mark" href="./"><b>DANI HILL</b><small>An Accel Collection Estate</small></a>
       <p style="max-width:38ch">A private highland estate in Gohtong Jaya, Genting Highlands. Part of the Accel Collection, operated by Accel Hospitality Management.</p>
     </div>
-    <div><h4>Weddings</h4><ul><li><a href="./#venue">The Venue</a></li><li><a href="./#your-day">Your Day</a></li><li><a href="./#faq">FAQ</a></li><li><a href="./#enquire">Check a Date</a></li></ul></div>
+    <div><h4>Weddings</h4><ul><li><a href="./#venue">The Venue</a></li><li><a href="./#your-day">Your Day</a></li><li><a href="./#faq">FAQ</a></li><li><a href="./#enquire" data-cta="wedding_enquiry" data-loc="footer">Check a Date</a></li></ul></div>
     <div><h4>Explore</h4><ul><li><a href="residences.html">Stay</a></li><li><a href="gallery.html#weddings">Wedding Gallery</a></li><li><a href="gallery.html#mansion">The Mansion</a></li><li><a href="gallery.html#villa">Villa Dani</a></li><li><a href="gallery.html#events">Special Events</a></li></ul></div>
     <div><h4>Contact</h4><ul><li>011-6226 5257</li><li><a href="https://www.instagram.com/danihill_puncakdani/" target="_blank" rel="noopener">Instagram</a></li><li><a href="https://www.accelgroup.asia/" target="_blank" rel="noopener">Accel Group</a></li></ul></div>
-    <div class="legal"><span>© 2026 Dani Hill — Puncak Dani · Accel Hospitality Management Sdn. Bhd. (202601033619)</span><span>Kuala Lumpur — Genting Highlands — Fraser's Hill</span></div>
+    <div class="legal"><span>© 2026 Dani Hill — Puncak Dani · Accel Hospitality Management Sdn. Bhd. (202601033619)</span><span><a href="privacy.html">Privacy notice</a> · Kuala Lumpur — Genting Highlands — Fraser's Hill</span></div>
   </div>
 </footer>
-<script>
-(function(){
-  var a=document.getElementById('wa-send');
-  function v(id){var e=document.getElementById(id);return e&&e.value?e.value.trim():'';}
-  function build(){var l=['Hi Dani Hill, we would like to check a wedding date.'];
-    if(v('f-name'))l.push('Names: '+v('f-name'));if(v('f-date'))l.push('Date: '+v('f-date'));
-    if(v('f-guests'))l.push('Guests: '+v('f-guests'));l.push('Overnight stay: '+v('f-stay'));
-    if(v('f-msg'))l.push('Notes: '+v('f-msg'));
-    a.href='https://wa.me/601162265257?text='+encodeURIComponent(l.join('\n'));}
-  var f=document.getElementById('enq-form');f.addEventListener('input',build);f.addEventListener('change',build);f.addEventListener('submit',function(e){e.preventDefault();});build();
-  document.querySelectorAll('.menu-panel a').forEach(function(x){x.addEventListener('click',function(){x.closest('details').removeAttribute('open');});});
-})();
-</script>
-
 <script>
 (function(){
   var el=document.getElementById('wx'); if(!el)return;
@@ -251,5 +254,6 @@
   }).catch(function(){});
 })();
 </script>
+<script src="assets/site.js" defer></script>
 </body>
 </html>

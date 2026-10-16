@@ -275,3 +275,46 @@ section{scroll-margin-top:84px}
 .plan figure{margin:0}
 .plan img{width:100%;height:auto;display:block;border:1px solid var(--line)}
 .plan figcaption{margin-top:12px;font-size:12px;letter-spacing:.06em;color:var(--mute)}
+
+/* Enquiry forms: shared */
+button.btn{cursor:pointer;font-family:var(--body)}
+.btn[disabled]{opacity:.6;cursor:progress}
+.hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;overflow:hidden}
+.check{grid-column:1/-1;display:flex;gap:12px;align-items:flex-start}
+.check input{flex:none;width:18px;height:18px;min-height:0!important;margin:3px 0 0;padding:0!important;border:0!important;accent-color:var(--gold)}
+.check label{font-size:13.5px!important;font-weight:300;letter-spacing:0!important;text-transform:none!important;line-height:1.55}
+.check a{text-decoration:underline;text-underline-offset:3px}
+.form-status{grid-column:1/-1;margin:0;font-size:14px}
+.form-status:empty{display:none}
+.enq .form-status.error{color:#F2BFAE}
+.form-alt{font-size:13px}
+.form-alt a{text-decoration:underline;text-underline-offset:3px}
+.enq .form-alt{color:rgba(248,245,239,.62)}
+.form-done{display:flex;flex-direction:column;gap:12px;padding:clamp(28px,4vw,44px);border:1px solid var(--line-lt);align-self:start}
+.form-done h3{font-size:clamp(28px,2.6vw,36px)}
+.form-done:focus{outline:none}
+.form-ref{font-size:12px;letter-spacing:.12em;text-transform:uppercase;opacity:.75}
+/* Light (viewing) form */
+.form-light{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 24px;margin-top:6px}
+.form-light .field{display:flex;flex-direction:column;gap:8px}
+.form-light label{font-size:10.5px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-3)}
+.form-light input,.form-light select{font:inherit;font-size:16px;color:var(--ink);background:transparent;border:0;border-bottom:1px solid rgba(38,38,38,.28);border-radius:0;padding:10px 0;min-height:44px}
+.form-light input::placeholder{color:rgba(38,38,38,.38)}
+.form-light input:focus,.form-light select:focus{outline:none;border-bottom-color:var(--gold-dk)}
+.form-light .form-foot{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;gap:22px;margin-top:6px}
+.form-light .form-status.error{color:#9A3B22}
+.form-light .form-alt{grid-column:1/-1;color:var(--ink-3)}
+.form-done.light{border-color:var(--line);margin-top:6px}
+@media (max-width:560px){.form-light{grid-template-columns:minmax(0,1fr)}}
+/* Cookie banner */
+.consent{position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px 24px;background:var(--ivory);color:var(--ink);border-top:1px solid var(--line);box-shadow:0 -10px 30px rgba(26,26,25,.08);padding:16px max(20px,env(safe-area-inset-right,0px)) calc(16px + env(safe-area-inset-bottom,0px)) max(20px,env(safe-area-inset-left,0px));font-size:14px;line-height:1.6}
+.consent p{margin:0;max-width:72ch}
+.consent a{text-decoration:underline;text-underline-offset:3px}
+.consent-actions{display:flex;gap:10px}
+.consent .btn{min-height:42px;padding:10px 20px}
+/* Privacy page */
+.legal-copy{max-width:760px}
+.legal-copy h2{font-size:clamp(26px,2.4vw,32px);margin-top:48px}
+.legal-copy p,.legal-copy li{color:var(--ink-2)}
+.legal-copy ul{padding-left:20px;display:flex;flex-direction:column;gap:6px}
+.legal-copy p{margin-top:14px}
