@@ -267,7 +267,11 @@ section{scroll-margin-top:84px}
 @media (max-width:560px){.why{grid-template-columns:minmax(0,1fr)}.why li,.why li:nth-child(even){padding:28px 0;border-left:0}}
 
 /* Estate plan */
-.plan{display:flex;flex-direction:column;gap:clamp(36px,5vw,64px)}
+.plan{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(32px,5vw,72px);align-items:center}
+.plan .two{grid-template-columns:minmax(0,1fr);gap:22px}
+.plan .two .lead{padding-top:0;font-size:16.5px}
+.plan figure{max-width:720px;justify-self:start}
+@media (max-width:860px){.plan{grid-template-columns:minmax(0,1fr)}.plan figure{max-width:none}}
 .plan figure{margin:0}
 .plan img{width:100%;height:auto;display:block;border:1px solid var(--line)}
 .plan figcaption{margin-top:12px;font-size:12px;letter-spacing:.06em;color:var(--mute)}
