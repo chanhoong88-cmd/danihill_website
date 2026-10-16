@@ -318,3 +318,14 @@ button.btn{cursor:pointer;font-family:var(--body)}
 .legal-copy p,.legal-copy li{color:var(--ink-2)}
 .legal-copy ul{padding-left:20px;display:flex;flex-direction:column;gap:6px}
 .legal-copy p{margin-top:14px}
+
+/* Responsive & state fixes */
+[hidden]{display:none!important}
+.plan figure{width:100%}
+@media (max-width:860px){.plan figure{justify-self:stretch}}
+img{height:auto}
+.hero>img,.gal img,.g-grid img,.cross img{height:100%}
+@media (max-width:600px){.mark small{font-size:9px;letter-spacing:.24em}.hero .foot-line .wrap{font-size:9.5px}}
+@media (min-width:861px) and (max-width:1100px){.why{grid-template-columns:repeat(2,minmax(0,1fr))}.why li:not(:nth-child(3n+1)){padding-left:0;border-left:0}.why li:nth-child(even){padding-left:28px;border-left:1px solid var(--line)}.seq{grid-template-columns:repeat(2,minmax(0,1fr))}.seq li,.seq li+li{padding:28px 20px 28px 0;border-left:0;border-bottom:1px solid var(--line)}}
+.wx b{white-space:nowrap}
+@media (max-width:420px){.wx{gap:8px;padding:7px 12px}.wx i{display:block;flex-basis:100%}.wx{flex-wrap:wrap}}
