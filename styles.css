@@ -255,3 +255,13 @@ section{scroll-margin-top:84px}
 
 .hero .tagline{margin-top:-8px;font-size:12px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:rgba(248,245,239,.9);text-shadow:0 1px 14px rgba(40,22,8,.35)}
 @media (max-width:560px){.hero .tagline{font-size:10.5px;letter-spacing:.16em}}
+
+/* Why couples choose */
+.why{list-style:none;margin:clamp(48px,6vw,80px) 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line)}
+.why li{padding:34px 32px 36px 0;display:flex;flex-direction:column;gap:12px;border-bottom:1px solid var(--line)}
+.why li:not(:nth-child(3n+1)){padding-left:32px;border-left:1px solid var(--line)}
+.why b{font-family:var(--display);font-weight:400;font-size:40px;line-height:1;color:var(--gold)}
+.why h3{font-size:clamp(23px,2vw,27px)}
+.why p{font-size:15.5px;color:var(--ink-2)}
+@media (max-width:900px){.why{grid-template-columns:repeat(2,minmax(0,1fr))}.why li:not(:nth-child(3n+1)){padding-left:0;border-left:0}.why li:nth-child(even){padding-left:24px;border-left:1px solid var(--line)}}
+@media (max-width:560px){.why{grid-template-columns:minmax(0,1fr)}.why li,.why li:nth-child(even){padding:28px 0;border-left:0}}
