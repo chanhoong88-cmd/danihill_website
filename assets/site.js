@@ -119,7 +119,7 @@
     return n < 50 ? 'under_50' : n < 100 ? '50_99' : n < 200 ? '100_199' : n <= 300 ? '200_300' : n <= 500 ? '301_500' : 'over_500';
   }
   function safeParams(type, data) {
-    if (type === 'wedding') return { guest_band: guestBand(data.guests), event_month: (data.event_date || '').slice(0, 7) || 'unknown', stay_interest: /^Yes/.test(data.stay || '') ? 'yes' : (data.stay === 'No' ? 'no' : 'unsure') };
+    if (type === 'wedding') return { guest_band: guestBand(data.guests), event_month: (data.event_date || '').slice(0, 7) || 'unknown', stay_interest: /^Yes/.test(data.stay || '') ? 'yes' : (data.stay === 'No' ? 'no' : 'unsure'), guest_country: data.country || 'not_asked' };
     if (type === 'viewing') return { slot_type: /Weekend/.test(data.visit_slot || '') ? 'weekend' : (data.visit_slot ? 'weekday' : 'unknown'), attending: data.attending || 'unknown' };
     return { residence: data.residence || 'unknown', purpose: data.purpose || 'unknown', guest_band: guestBand(data.guests) };
   }

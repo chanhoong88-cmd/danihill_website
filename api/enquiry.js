@@ -23,7 +23,7 @@ const ATTR = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_conte
 
 // Columns per tab. The pipeline columns at the end are left blank for the team to fill in.
 const FIELDS = {
-  wedding: ['name', 'phone', 'email', 'event_date', 'guests', 'stay', 'message'],
+  wedding: ['name', 'phone', 'email', 'event_date', 'guests', 'stay', 'country', 'message'],
   viewing: ['name', 'phone', 'email', 'visit_date', 'visit_slot', 'attending', 'message'],
   stay: ['name', 'phone', 'email', 'residence', 'arrival', 'departure', 'guests', 'purpose', 'message'],
 };
@@ -110,7 +110,7 @@ function esc(v) {
 const LABELS = {
   event_date: 'Wedding date', guests: 'Guests', stay: 'Overnight stay', visit_date: 'Preferred date',
   visit_slot: 'Preferred time', attending: 'Attending', residence: 'Residence', arrival: 'Arrival',
-  departure: 'Departure', purpose: 'Purpose', message: 'Message', phone: 'Phone', email: 'Email',
+  departure: 'Departure', purpose: 'Purpose', country: 'Travelling from', message: 'Message', phone: 'Phone', email: 'Email',
 };
 const SUBJECT = {
   wedding: 'We have received your wedding enquiry',
