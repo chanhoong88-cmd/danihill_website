@@ -6,7 +6,7 @@
   // ---- Configuration -------------------------------------------------------
   // Paste your Google Tag Manager container ID here (e.g. 'GTM-XXXXXXX') once the
   // container has been cleaned of the old Wix page-load conversion tags.
-  var GTM_ID = '';
+  var GTM_ID = 'GTM-PSR5GD2Z';
   var WHATSAPP = '601162265257';
   var ENDPOINT = '/api/enquiry';
 
