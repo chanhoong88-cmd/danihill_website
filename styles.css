@@ -1,7 +1,7 @@
 /* Layout: Accel Group house style. Ivory reading bands with hairline rules, near-black photographic bands, wide two-column headings. */
 :root{
   --ivory:#F8F5EF; --stone:#EFEAE1; --sand:#D8D2C7;
-  --ink:#262626; --ink-2:#4A4844; --ink-3:#6B6862; --mute:#8D8880;
+  --ink:#262626; --ink-2:#4A4844; --ink-3:#6B6862; --mute:#736E66;
   --night:#1A1A19; --night-2:#262624;
   --gold:#C6A86B; --gold-dk:#8A7243;
   --line:rgba(38,38,38,.14); --line-lt:rgba(248,245,239,.16);
@@ -329,3 +329,9 @@ img{height:auto}
 @media (min-width:861px) and (max-width:1100px){.why{grid-template-columns:repeat(2,minmax(0,1fr))}.why li:not(:nth-child(3n+1)){padding-left:0;border-left:0}.why li:nth-child(even){padding-left:28px;border-left:1px solid var(--line)}.seq{grid-template-columns:repeat(2,minmax(0,1fr))}.seq li,.seq li+li{padding:28px 20px 28px 0;border-left:0;border-bottom:1px solid var(--line)}}
 .wx b{white-space:nowrap}
 @media (max-width:420px){.wx{gap:8px;padding:7px 12px}.wx i{display:block;flex-basis:100%}.wx{flex-wrap:wrap}}
+
+/* Performance & accessibility pass */
+.foot h2.fh{margin:0 0 14px;font-family:var(--body);font-size:10px;line-height:1.4;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+.why b,.seq b{color:#A0824A}
+.on-dark .why b,.on-dark .seq b,.dark .why b,.dark .seq b{color:var(--gold)}
+@media (max-width:600px){.g-grid figcaption{font-size:12px;letter-spacing:.14em}}
