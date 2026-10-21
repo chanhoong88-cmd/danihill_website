@@ -335,3 +335,10 @@ img{height:auto}
 .why b,.seq b{color:#A0824A}
 .on-dark .why b,.on-dark .seq b,.dark .why b,.dark .seq b{color:var(--gold)}
 @media (max-width:600px){.g-grid figcaption{font-size:12px;letter-spacing:.14em}}
+
+/* Floating WhatsApp button */
+.wa-fab{position:fixed;right:max(18px,env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:55;display:inline-flex;align-items:center;gap:8px;min-height:52px;padding:0 18px 0 14px;border-radius:999px;background:#1F8F55;color:#fff;font-size:15px;font-weight:500;letter-spacing:.02em;text-decoration:none;box-shadow:0 8px 24px rgba(26,26,25,.22)}
+.wa-fab:hover{background:#18784A}
+.wa-fab:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+@media (max-width:600px){.wa-fab span{display:none}.wa-fab{padding:0;width:56px;justify-content:center}}
+@media print{.wa-fab{display:none}}
