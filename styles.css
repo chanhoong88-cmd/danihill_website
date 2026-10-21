@@ -307,11 +307,6 @@ button.btn{cursor:pointer;font-family:var(--body)}
 .form-done.light{border-color:var(--line);margin-top:6px}
 @media (max-width:560px){.form-light{grid-template-columns:minmax(0,1fr)}}
 /* Cookie banner */
-.consent{position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px 24px;background:var(--ivory);color:var(--ink);border-top:1px solid var(--line);box-shadow:0 -10px 30px rgba(26,26,25,.08);padding:16px max(20px,env(safe-area-inset-right,0px)) calc(16px + env(safe-area-inset-bottom,0px)) max(20px,env(safe-area-inset-left,0px));font-size:14px;line-height:1.6}
-.consent p{margin:0;max-width:72ch}
-.consent a{text-decoration:underline;text-underline-offset:3px}
-.consent-actions{display:flex;gap:10px}
-.consent .btn{min-height:42px;padding:10px 20px}
 /* Privacy page */
 .legal-copy{max-width:760px}
 .legal-copy h2{font-size:clamp(26px,2.4vw,32px);margin-top:48px}
@@ -335,3 +330,36 @@ img{height:auto}
 .why b,.seq b{color:#A0824A}
 .on-dark .why b,.on-dark .seq b,.dark .why b,.dark .seq b{color:var(--gold)}
 @media (max-width:600px){.g-grid figcaption{font-size:12px;letter-spacing:.14em}}
+
+/* Cookie notice: compact card, bottom-left on desktop, slim bar on phones */
+.consent{position:fixed;z-index:60;left:max(20px,env(safe-area-inset-left,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));max-width:440px;display:flex;align-items:center;gap:18px;background:rgba(248,245,239,.96);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:var(--ink-2);border:1px solid var(--line);border-radius:4px;box-shadow:0 12px 32px rgba(26,26,25,.12);padding:14px 16px 14px 20px;font-size:13px;line-height:1.55;transition:opacity .3s,transform .3s}
+.consent.out{opacity:0;transform:translateY(8px)}
+.consent p{margin:0}
+.consent a{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+.consent-actions{display:flex;align-items:center;gap:6px;flex-shrink:0}
+.consent button{font:inherit;cursor:pointer;border:0;border-radius:2px;min-height:40px;padding:0 14px}
+.consent-dec{background:none;color:var(--ink-3);text-decoration:underline;text-underline-offset:3px}
+.consent-ok{background:var(--ink);color:var(--ivory);font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;padding:0 20px}
+.consent-ok:hover{background:var(--night)}
+@media (max-width:600px){.consent{left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));max-width:none;padding:10px 10px 10px 14px;gap:10px;font-size:12.5px}}
+
+/* Floating WhatsApp button: dark pill with gold detail, lifts above the cookie notice */
+.wa-fab{position:fixed;z-index:55;right:max(20px,env(safe-area-inset-right,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));display:inline-flex;align-items:center;gap:12px;min-height:54px;padding:7px 22px 7px 7px;border-radius:999px;background:rgba(26,26,25,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:var(--ivory);border:1px solid rgba(198,168,107,.45);box-shadow:0 14px 34px rgba(26,26,25,.28),inset 0 1px 0 rgba(248,245,239,.08);text-decoration:none;font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;opacity:0;transform:translateY(12px);transition:opacity .5s,transform .5s,box-shadow .25s,border-color .25s}
+.wa-fab.in{opacity:1;transform:none}
+.wa-fab .wa-ico{position:relative;display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:linear-gradient(145deg,#D7BC84,var(--gold) 55%,var(--gold-dk));color:var(--night)}
+.wa-fab .wa-ico::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:1px solid rgba(198,168,107,.6);animation:wa-halo 2.8s ease-out 1.5s 3}
+.wa-fab:hover{border-color:var(--gold);box-shadow:0 18px 40px rgba(26,26,25,.34)}
+.wa-fab.in:hover{transform:translateY(-2px)}
+.wa-fab:focus-visible{outline:2px solid var(--gold);outline-offset:4px}
+@keyframes wa-halo{0%{transform:scale(1);opacity:.9}100%{transform:scale(1.45);opacity:0}}
+/* tablets and phones: sit above the cookie notice while it is open */
+@media (max-width:960px){.wa-fab{bottom:calc(var(--consent-h,0px) + 14px + env(safe-area-inset-bottom,0px));transition:opacity .5s,transform .5s,bottom .3s}}
+/* phones: icon-only */
+@media (max-width:600px){
+  .wa-fab{right:max(14px,env(safe-area-inset-right,0px));padding:7px;min-height:0}
+  .wa-fab .wa-txt{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  .wa-fab .wa-ico{width:46px;height:46px}
+}
+@media (prefers-reduced-motion:reduce){.wa-fab,.consent{transition:none}.wa-fab .wa-ico::after{animation:none}}
+@media print{.wa-fab,.consent{display:none}}
+

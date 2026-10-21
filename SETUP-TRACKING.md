@@ -56,7 +56,7 @@ a conversation happened, and a viewing request is not an attended viewing.
    listed parameters as event parameters.
 4. In GA4, mark only `wedding_enquiry_submit`, `viewing_request_submit` and `stay_enquiry_submit` as key events.
 5. For Google Ads and Meta, fire their conversion/Lead tags only on the three submit events.
-6. Consent Mode v2 defaults to denied. Tags should respect consent (GTM built-in consent checks).
+6. Consent Mode v2: denied by default for EEA, UK and Switzerland (opt-in); granted by default elsewhere, with Decline in the banner. Tags should respect consent (GTM built-in consent checks).
 
 ## 4. Attribution
 - UTM tags and Google/Meta click IDs (`gclid`, `gbraid`, `wbraid`, `fbclid`) are saved in the visitor's
