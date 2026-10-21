@@ -363,16 +363,13 @@ img{height:auto}
 @media (prefers-reduced-motion:reduce){.wa-fab,.consent{transition:none}.wa-fab .wa-ico::after{animation:none}}
 @media print{.wa-fab,.consent{display:none}}
 
-/* Gallery link under The Garden Lawn: outlined, gold rule that draws in on hover */
-.btn-gallery{position:relative;align-self:flex-start;display:inline-flex;align-items:center;gap:18px;margin-top:12px;min-height:52px;padding:14px 26px 14px 28px;border:1px solid var(--ink);border-radius:2px;color:var(--ink);text-decoration:none;font-size:11px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;overflow:hidden;isolation:isolate;transition:color .35s,border-color .35s}
-.btn-gallery::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.2,.7,.2,1)}
-.btn-gallery::after{content:"";position:absolute;left:28px;right:26px;bottom:9px;height:1px;background:var(--gold);transform:scaleX(.18);transform-origin:left;transition:transform .45s cubic-bezier(.2,.7,.2,1)}
-.btn-gallery .bg-arrow{color:var(--gold-dk);font-size:15px;letter-spacing:0;transition:transform .35s,color .35s}
-.btn-gallery:hover,.btn-gallery:focus-visible{color:var(--ivory);border-color:var(--ink)}
-.btn-gallery:hover::before,.btn-gallery:focus-visible::before{transform:scaleX(1)}
+/* Gallery link under The Garden Lawn: wording, arrow and a gold line that draws across on hover */
+.btn-gallery{position:relative;align-self:flex-start;display:inline-flex;align-items:center;gap:16px;margin-top:8px;padding:8px 0 10px;color:var(--ink);text-decoration:none;font-size:11px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;transition:color .35s}
+.btn-gallery::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--gold);transform:scaleX(.3);transform-origin:left;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.btn-gallery .bg-arrow{color:var(--gold-dk);font-size:15px;letter-spacing:0;transition:transform .35s}
+.btn-gallery:hover,.btn-gallery:focus-visible{color:var(--gold-dk)}
 .btn-gallery:hover::after,.btn-gallery:focus-visible::after{transform:scaleX(1)}
-.btn-gallery:hover .bg-arrow,.btn-gallery:focus-visible .bg-arrow{transform:translateX(4px);color:var(--gold)}
-.btn-gallery:focus-visible{outline:2px solid var(--gold);outline-offset:4px}
-@media (max-width:600px){.btn-gallery{align-self:stretch;justify-content:space-between}}
-@media (prefers-reduced-motion:reduce){.btn-gallery,.btn-gallery::before,.btn-gallery::after,.btn-gallery .bg-arrow{transition:none}}
+.btn-gallery:hover .bg-arrow,.btn-gallery:focus-visible .bg-arrow{transform:translateX(5px)}
+.btn-gallery:focus-visible{outline:2px solid var(--gold);outline-offset:6px}
+@media (prefers-reduced-motion:reduce){.btn-gallery,.btn-gallery::after,.btn-gallery .bg-arrow{transition:none}}
 
