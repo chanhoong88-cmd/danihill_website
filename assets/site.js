@@ -31,7 +31,7 @@
   gtag('consent', 'default', {
     ad_storage: 'granted', analytics_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted'
   });
-  if (saved && saved.choice === 'granted') applyConsent('granted');
+  if (saved && (saved.choice === 'granted' || saved.choice === 'denied')) applyConsent(saved.choice);
   function applyConsent(choice) {
     var v = choice === 'granted' ? 'granted' : 'denied';
     gtag('consent', 'update', { ad_storage: v, analytics_storage: v, ad_user_data: v, ad_personalization: v });
@@ -50,22 +50,33 @@
   }
   w.dhTrack = track;
 
+  // Cookie notice. Outside the EEA/UK/CH tracking is already on, so this is a notice with an opt-out:
+  // "OK" accepts, "Decline" switches tracking off. If the visitor ignores it, it is not shown again
+  // after their first page (consent defaults stay as set above).
+  function setConsentH(px) { d.documentElement.style.setProperty('--consent-h', px + 'px'); }
   function consentBanner() {
-    if (ls.get('dh_consent')) return;
+    var saved = ls.get('dh_consent');
+    if (saved) return;
     var b = d.createElement('div');
-    b.className = 'consent'; b.setAttribute('role', 'region'); b.setAttribute('aria-label', 'Cookie choices');
-    b.innerHTML = '<p>We use cookies to understand how visitors use this site and to measure our advertising. ' +
-      'See our <a href="privacy.html">privacy notice</a>.</p>' +
-      '<div class="consent-actions"><button type="button" class="btn btn-line ink" data-c="denied">Decline</button>' +
-      '<button type="button" class="btn btn-dark" data-c="granted">Accept</button></div>';
-    b.addEventListener('click', function (e) {
-      var btn = e.target.closest('[data-c]'); if (!btn) return;
-      var c = btn.getAttribute('data-c');
+    b.className = 'consent'; b.setAttribute('role', 'region'); b.setAttribute('aria-label', 'Cookie notice');
+    b.innerHTML = '<p>We use cookies to understand visits and measure our advertising. <a href="privacy.html">Privacy notice</a></p>' +
+      '<div class="consent-actions"><button type="button" class="consent-dec" data-c="denied">Decline</button>' +
+      '<button type="button" class="consent-ok" data-c="granted">OK</button></div>';
+    function close(c) {
       ls.set('dh_consent', { choice: c, at: Date.now() });
-      applyConsent(c);
-      b.remove();
+      if (c !== 'notice') applyConsent(c);
+      b.classList.add('out'); setConsentH(0);
+      setTimeout(function () { b.remove(); }, 300);
+    }
+    b.addEventListener('click', function (e) {
+      var btn = e.target.closest('[data-c]'); if (btn) close(btn.getAttribute('data-c'));
     });
     d.body.appendChild(b);
+    var sync = function () { if (b.isConnected && !b.classList.contains('out')) setConsentH(b.offsetHeight + (w.innerWidth <= 600 ? 12 : 20) + 8); };
+    sync();
+    if (w.ResizeObserver) new ResizeObserver(sync).observe(b); w.addEventListener('resize', sync);
+    // Treat as seen when they leave the page, so it doesn't follow them around the site.
+    w.addEventListener('pagehide', function () { if (!ls.get('dh_consent')) ls.set('dh_consent', { choice: 'notice', at: Date.now() }); });
   }
 
   // ---- Campaign attribution (kept with the lead, not sent to analytics) ------
@@ -119,7 +130,8 @@
     a.setAttribute('data-wa', /residences/.test(location.pathname) ? 'stay' : 'wedding');
     a.setAttribute('data-loc', 'floating');
     a.setAttribute('aria-label', 'Message Dani Hill on WhatsApp');
-    a.innerHTML = '<svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.3.8 3.2.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.2-.2-.4-.3Z"/></svg><span>WhatsApp</span>';
+    a.innerHTML = '<span class="wa-ico"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.3.8 3.2.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.2-.2-.4-.3Z"/></svg></span><span class="wa-txt">Chat with us</span>';
+    setTimeout(function () { a.classList.add('in'); }, 900);
     d.body.appendChild(a);
   }
 
