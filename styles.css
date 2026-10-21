@@ -363,3 +363,13 @@ img{height:auto}
 @media (prefers-reduced-motion:reduce){.wa-fab,.consent{transition:none}.wa-fab .wa-ico::after{animation:none}}
 @media print{.wa-fab,.consent{display:none}}
 
+/* Gallery link under The Garden Lawn: wording, arrow and a gold line that draws across on hover */
+.btn-gallery{position:relative;align-self:flex-start;display:inline-flex;align-items:center;gap:16px;margin-top:8px;padding:8px 0 10px;color:var(--ink);text-decoration:none;font-size:11px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;transition:color .35s}
+.btn-gallery::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--gold);transform:scaleX(.3);transform-origin:left;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.btn-gallery .bg-arrow{color:var(--gold-dk);font-size:15px;letter-spacing:0;transition:transform .35s}
+.btn-gallery:hover,.btn-gallery:focus-visible{color:var(--gold-dk)}
+.btn-gallery:hover::after,.btn-gallery:focus-visible::after{transform:scaleX(1)}
+.btn-gallery:hover .bg-arrow,.btn-gallery:focus-visible .bg-arrow{transform:translateX(5px)}
+.btn-gallery:focus-visible{outline:2px solid var(--gold);outline-offset:6px}
+@media (prefers-reduced-motion:reduce){.btn-gallery,.btn-gallery::after,.btn-gallery .bg-arrow{transition:none}}
+
