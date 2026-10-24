@@ -19,6 +19,8 @@
     { "source": "/packages", "destination": "/#enquire", "permanent": true },
     { "source": "/outdoor-wedding-venue-near-kl", "destination": "/", "permanent": true },
     { "source": "/corporate", "destination": "/#enquire", "permanent": true },
-    { "source": "/team-building", "destination": "/#enquire", "permanent": true }
+    { "source": "/team-building", "destination": "/#enquire", "permanent": true },
+    { "source": "/accommodations", "destination": "/residences", "permanent": true },
+    { "source": "/accommodation", "destination": "/residences", "permanent": true }
   ]
 }
