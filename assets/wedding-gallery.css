@@ -1,0 +1,47 @@
+/* Homepage wedding gallery: pinned film strip.
+   Section sits on a night band so the photography carries it. */
+.wg{background:var(--night);color:var(--ivory);position:relative}
+.wg .label{color:rgba(248,245,239,.62)}
+.wg-head{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap}
+.wg-head h2{margin:0;font-family:var(--display);font-weight:400;font-size:clamp(36px,4.4vw,60px);line-height:1.05;letter-spacing:-.01em;max-width:13ch}
+.wg-head p{margin:0;max-width:38ch;color:rgba(248,245,239,.72);font-size:15px;line-height:1.7}
+.wg-link{display:inline-flex;align-items:center;gap:14px;font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;color:var(--ivory);padding-bottom:6px;border-bottom:1px solid rgba(198,168,107,.7);transition:color .3s,gap .3s}
+.wg-link:hover{color:var(--gold);gap:20px}
+.wg-link svg{width:16px;height:10px}
+.wg figure{margin:0;position:relative;overflow:hidden;background:var(--night-2)}
+.wg figure img{display:block;width:100%;height:100%;object-fit:cover}
+.wg figcaption{position:absolute;left:0;right:0;bottom:0;padding:44px 20px 16px;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ivory);background:linear-gradient(transparent,rgba(0,0,0,.55))}
+
+/* Heading reveal */
+.wg-rv{opacity:0;transform:translateY(28px);transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1.1s cubic-bezier(.2,.7,.2,1)}
+.wg-rv.in{opacity:1;transform:none}
+.wg-rv.d1{transition-delay:.12s}.wg-rv.d2{transition-delay:.24s}
+
+/* ---------- Film strip (pinned horizontal pan) ---------- */
+.wg-a .pin{height:420vh}
+.wg-a .stick{position:sticky;top:0;height:100vh;height:100svh;display:flex;flex-direction:column;justify-content:center;gap:clamp(28px,5vh,56px);overflow:hidden;padding-block:clamp(72px,10vh,110px) clamp(32px,6vh,64px)}
+.wg-a .track{display:flex;gap:clamp(14px,1.6vw,24px);padding-left:var(--gl);padding-right:var(--gr);will-change:transform}
+.wg-a figure{flex:0 0 auto;height:min(58vh,560px)}
+.wg-a figure.p{aspect-ratio:2/3}.wg-a figure.l{aspect-ratio:3/2}
+.wg-a figure img{width:118%;max-width:none;margin-left:-9%;will-change:transform}
+.wg-a .bar{margin:0 var(--gr) 0 var(--gl);height:1px;background:var(--line-lt);position:relative}
+.wg-a .bar i{position:absolute;inset:0 auto 0 0;width:100%;background:var(--gold);transform-origin:left;transform:scaleX(0)}
+.wg-a .count{font-variant-numeric:tabular-nums;font-size:11px;letter-spacing:.2em;color:rgba(248,245,239,.6)}
+
+/* Phones: a swipeable strip instead of the pinned pan */
+@media (max-width:760px){
+  .wg-a .pin{height:auto}.wg-a .stick{position:static;height:auto;padding-block:88px 72px}
+  .wg-a .track{overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;transform:none!important;scrollbar-width:none}
+  .wg-a .track::-webkit-scrollbar{display:none}
+  .wg-a figure{height:62vh;scroll-snap-align:center}
+  .wg-a figure img{width:100%;margin:0;transform:none!important}
+  .wg-a .bar,.wg-a .count{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  .wg-rv{opacity:1;transform:none;transition:none}
+  .wg-a .pin{height:auto}.wg-a .stick{position:static;height:auto;padding-block:clamp(88px,11vw,152px)}
+  .wg-a .track{overflow-x:auto;scroll-snap-type:x mandatory;transform:none!important}
+  .wg-a figure{scroll-snap-align:start}
+  .wg-a figure img{width:100%;margin:0;transform:none!important}
+  .wg-a .bar,.wg-a .count{display:none}
+}
