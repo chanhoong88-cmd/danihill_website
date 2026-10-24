@@ -11,6 +11,14 @@
     { "source": "/villa-dani", "destination": "/residences#houses", "permanent": true },
     { "source": "/contact", "destination": "/#visit", "permanent": true },
     { "source": "/contact-us", "destination": "/#visit", "permanent": true },
-    { "source": "/blank", "destination": "/", "permanent": true }
+    { "source": "/blank", "destination": "/", "permanent": true },
+    { "source": "/weddings", "destination": "/", "permanent": true },
+    { "source": "/wedding", "destination": "/", "permanent": true },
+    { "source": "/location", "destination": "/#visit", "permanent": true },
+    { "source": "/venue", "destination": "/#venue", "permanent": true },
+    { "source": "/packages", "destination": "/#enquire", "permanent": true },
+    { "source": "/outdoor-wedding-venue-near-kl", "destination": "/", "permanent": true },
+    { "source": "/corporate", "destination": "/#enquire", "permanent": true },
+    { "source": "/team-building", "destination": "/#enquire", "permanent": true }
   ]
 }
