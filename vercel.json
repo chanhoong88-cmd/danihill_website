@@ -116,6 +116,16 @@
       "source": "/indian-weddings",
       "destination": "/blog/outdoor-indian-wedding-venue-near-kl",
       "permanent": true
+    },
+    {
+      "source": "/faq",
+      "destination": "/#faq",
+      "permanent": true
+    },
+    {
+      "source": "/faqs",
+      "destination": "/#faq",
+      "permanent": true
     }
   ]
 }
