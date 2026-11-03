@@ -59,7 +59,7 @@
     if (saved) return;
     var b = d.createElement('div');
     b.className = 'consent'; b.setAttribute('role', 'region'); b.setAttribute('aria-label', 'Cookie notice');
-    b.innerHTML = '<p>We use cookies to understand visits and measure our advertising. <a href="privacy.html">Privacy notice</a></p>' +
+    b.innerHTML = '<p>We use cookies to understand visits and measure our advertising. <a href="/privacy">Privacy notice</a></p>' +
       '<div class="consent-actions"><button type="button" class="consent-dec" data-c="denied">Decline</button>' +
       '<button type="button" class="consent-ok" data-c="granted">OK</button></div>';
     function close(c) {

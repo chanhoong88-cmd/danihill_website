@@ -2,25 +2,120 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
-    { "source": "/garden-weddings", "destination": "/gallery#weddings", "permanent": true },
-    { "source": "/garden-wedding", "destination": "/gallery#weddings", "permanent": true },
-    { "source": "/indian-wedding", "destination": "/#enquire", "permanent": true },
-    { "source": "/indian-weddings", "destination": "/#enquire", "permanent": true },
-    { "source": "/family-retreat", "destination": "/residences#occasions", "permanent": true },
-    { "source": "/the-mansion", "destination": "/residences#houses", "permanent": true },
-    { "source": "/villa-dani", "destination": "/residences#houses", "permanent": true },
-    { "source": "/contact", "destination": "/#visit", "permanent": true },
-    { "source": "/contact-us", "destination": "/#visit", "permanent": true },
-    { "source": "/blank", "destination": "/", "permanent": true },
-    { "source": "/weddings", "destination": "/", "permanent": true },
-    { "source": "/wedding", "destination": "/", "permanent": true },
-    { "source": "/location", "destination": "/#visit", "permanent": true },
-    { "source": "/venue", "destination": "/#venue", "permanent": true },
-    { "source": "/packages", "destination": "/#enquire", "permanent": true },
-    { "source": "/outdoor-wedding-venue-near-kl", "destination": "/", "permanent": true },
-    { "source": "/corporate", "destination": "/#enquire", "permanent": true },
-    { "source": "/team-building", "destination": "/#enquire", "permanent": true },
-    { "source": "/accommodations", "destination": "/residences", "permanent": true },
-    { "source": "/accommodation", "destination": "/residences", "permanent": true }
+    {
+      "source": "/garden-weddings",
+      "destination": "/gallery#weddings",
+      "permanent": true
+    },
+    {
+      "source": "/garden-wedding",
+      "destination": "/gallery#weddings",
+      "permanent": true
+    },
+    {
+      "source": "/family-retreat",
+      "destination": "/residences#occasions",
+      "permanent": true
+    },
+    {
+      "source": "/the-mansion",
+      "destination": "/residences#houses",
+      "permanent": true
+    },
+    {
+      "source": "/villa-dani",
+      "destination": "/residences#houses",
+      "permanent": true
+    },
+    {
+      "source": "/contact",
+      "destination": "/#visit",
+      "permanent": true
+    },
+    {
+      "source": "/contact-us",
+      "destination": "/#visit",
+      "permanent": true
+    },
+    {
+      "source": "/blank",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/weddings",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/wedding",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/location",
+      "destination": "/#visit",
+      "permanent": true
+    },
+    {
+      "source": "/venue",
+      "destination": "/#venue",
+      "permanent": true
+    },
+    {
+      "source": "/packages",
+      "destination": "/#enquire",
+      "permanent": true
+    },
+    {
+      "source": "/outdoor-wedding-venue-near-kl",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/corporate",
+      "destination": "/#enquire",
+      "permanent": true
+    },
+    {
+      "source": "/team-building",
+      "destination": "/#enquire",
+      "permanent": true
+    },
+    {
+      "source": "/accommodations",
+      "destination": "/residences",
+      "permanent": true
+    },
+    {
+      "source": "/accommodation",
+      "destination": "/residences",
+      "permanent": true
+    },
+    {
+      "source": "/blog/10-essential-tips-planning-dream-wedding",
+      "destination": "/blog/garden-wedding-tips-klang-valley",
+      "permanent": true
+    },
+    {
+      "source": "/blog/seasonal-wedding-flowers-blooming-big-day",
+      "destination": "/blog/garden-wedding-tips-klang-valley",
+      "permanent": true
+    },
+    {
+      "source": "/blog/real-wedding-jessica-michael-garden-ceremony",
+      "destination": "/gallery#weddings",
+      "permanent": true
+    },
+    {
+      "source": "/indian-wedding",
+      "destination": "/blog/outdoor-indian-wedding-venue-near-kl",
+      "permanent": true
+    },
+    {
+      "source": "/indian-weddings",
+      "destination": "/blog/outdoor-indian-wedding-venue-near-kl",
+      "permanent": true
+    }
   ]
 }
