@@ -458,3 +458,13 @@ img{height:auto}
 .addons li b{font-weight:500;color:var(--ink);white-space:nowrap}
 .fine{margin-top:24px;font-size:13px;color:var(--ink-3);max-width:80ch}
 @media (max-width:860px){.prices{grid-template-columns:minmax(0,1fr)}.prices li,.prices li+li{padding:28px 0;border-left:0;border-bottom:1px solid var(--line)}.addons{grid-template-columns:minmax(0,1fr)}}
+
+/* Floating enquiry button: phones only, sits left of the WhatsApp button; hidden while the form is on screen */
+.enq-fab{display:none}
+@media (max-width:600px){
+  .enq-fab{position:fixed;z-index:55;left:max(14px,env(safe-area-inset-left,0px));right:calc(max(14px,env(safe-area-inset-right,0px)) + 72px);bottom:calc(var(--consent-h,0px) + 14px + env(safe-area-inset-bottom,0px));display:flex;align-items:center;justify-content:center;min-height:54px;border-radius:999px;background:var(--ivory);color:var(--night);border:1px solid rgba(198,168,107,.7);box-shadow:0 14px 34px rgba(26,26,25,.22);text-decoration:none;font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .4s,transform .4s,bottom .3s}
+  .enq-fab.in{opacity:1;transform:none;pointer-events:auto}
+  .enq-fab.in.away{opacity:0;transform:translateY(12px);pointer-events:none}
+  .foot{padding-bottom:calc(96px + env(safe-area-inset-bottom,0px))}
+}
+@media print{.enq-fab{display:none}}
