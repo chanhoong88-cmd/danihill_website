@@ -12,11 +12,11 @@
 //   NOTIFY_EMAIL          your team inbox; receives a copy of every new enquiry (comma-separate several)
 // If these are not set, enquiries are still saved; emails are simply skipped.
 // The Sheet must be shared with the service account email as Editor, with tabs named
-// exactly: Wedding, Viewing, Stay.
+// exactly: Wedding, Viewing, Stay, Corporate. (A missing tab is created automatically on first use.)
 
 const crypto = require('crypto');
 
-const TABS = { wedding: 'Wedding', viewing: 'Viewing', stay: 'Stay' };
+const TABS = { wedding: 'Wedding', viewing: 'Viewing', stay: 'Stay', corporate: 'Corporate' };
 
 const ATTR = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content',
   'gclid', 'gbraid', 'wbraid', 'fbclid', 'landing_page', 'referrer', 'first_touch_source', 'page'];
@@ -26,6 +26,7 @@ const FIELDS = {
   wedding: ['name', 'phone', 'email', 'event_date', 'guests', 'stay', 'country', 'message'],
   viewing: ['name', 'phone', 'email', 'visit_date', 'visit_slot', 'attending', 'message'],
   stay: ['name', 'phone', 'email', 'residence', 'arrival', 'departure', 'guests', 'purpose', 'message'],
+  corporate: ['name', 'company', 'phone', 'email', 'event_date', 'guests', 'format', 'stay', 'message'],
 };
 const PIPELINE = ['stage', 'qualified', 'viewing_scheduled', 'viewing_attended', 'proposal_sent', 'booking_confirmed', 'booking_value', 'notes'];
 
@@ -43,7 +44,7 @@ function clean(v, max) {
 }
 
 function leadId(type) {
-  const prefix = { wedding: 'WED', viewing: 'VIEW', stay: 'STAY' }[type];
+  const prefix = { wedding: 'WED', viewing: 'VIEW', stay: 'STAY', corporate: 'CORP' }[type];
   const d = new Date(Date.now() + 8 * 3600 * 1000); // Malaysia time
   const ymd = d.toISOString().slice(2, 10).replace(/-/g, '');
   return `DH-${prefix}-${ymd}-${crypto.randomBytes(2).toString('hex').toUpperCase()}`;
@@ -92,7 +93,15 @@ async function appendRow(token, tab, row, type) {
   const base = `https://sheets.googleapis.com/v4/spreadsheets/${id}/values/`;
   const auth = { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' };
   // Write the header row the first time a tab is used.
-  const check = await tfetch(`${base}${encodeURIComponent(tab + '!A1:A1')}`, { headers: auth });
+  let check = await tfetch(`${base}${encodeURIComponent(tab + '!A1:A1')}`, { headers: auth });
+  if (check.status === 400) {
+    // The tab does not exist yet (e.g. Corporate): add it, then read again.
+    const add = await tfetch(`https://sheets.googleapis.com/v4/spreadsheets/${id}:batchUpdate`, {
+      method: 'POST', headers: auth, body: JSON.stringify({ requests: [{ addSheet: { properties: { title: tab } } }] }),
+    });
+    if (!add.ok) throw new Error('Sheet tab create failed: ' + add.status);
+    check = await tfetch(`${base}${encodeURIComponent(tab + '!A1:A1')}`, { headers: auth });
+  }
   if (!check.ok) throw new Error('Sheet read failed: ' + check.status);
   const values = [];
   if (!((await check.json()).values)) values.push(header(type));
@@ -110,17 +119,19 @@ function esc(v) {
 const LABELS = {
   event_date: 'Wedding date', guests: 'Guests', stay: 'Overnight stay', visit_date: 'Preferred date',
   visit_slot: 'Preferred time', attending: 'Attending', residence: 'Residence', arrival: 'Arrival',
-  departure: 'Departure', purpose: 'Purpose', country: 'Travelling from', message: 'Message', phone: 'Phone', email: 'Email',
+  departure: 'Departure', purpose: 'Purpose', company: 'Company', format: 'Format', country: 'Travelling from', message: 'Message', phone: 'Phone', email: 'Email',
 };
 const SUBJECT = {
   wedding: 'We have received your wedding enquiry',
   viewing: 'We have received your viewing request',
   stay: 'We have received your stay enquiry',
+  corporate: 'We have received your corporate enquiry',
 };
 const INTRO = {
   wedding: 'Thank you for your interest in celebrating your wedding at Dani Hill. Our events team will check availability for your date and reply, usually within one working day.',
   viewing: 'Thank you for asking to visit Dani Hill. We will contact you shortly to confirm a time for your viewing. Your visit is not confirmed until we reply.',
   stay: 'Thank you for your interest in staying at Dani Hill. Your host will reply with availability and a proposal shortly.',
+  corporate: 'Thank you for considering Dani Hill for your team. Our events team will check availability and reply with a proposal, usually within one working day.',
 };
 function detailRows(type, vals) {
   return FIELDS[type].filter((f) => f !== 'name' && vals[f]).map((f) =>

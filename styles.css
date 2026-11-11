@@ -442,3 +442,19 @@ img{height:auto}
 .post-lead .more{align-self:flex-start}
 @media (max-width:960px){.post-layout{grid-template-columns:minmax(0,1fr)}.post-aside{position:static}}
 @media (max-width:760px){.post-grid{grid-template-columns:minmax(0,1fr)}.post-lead{grid-template-columns:minmax(0,1fr)}.post-body{font-size:16.5px}.post-body .dek{font-size:18px}}
+
+/* Price guide (weddings, corporate) */
+.prices{list-style:none;margin:clamp(48px,6vw,72px) 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line)}
+.prices li{padding:32px 28px 32px 0;display:flex;flex-direction:column;gap:14px}
+.prices li+li{padding-left:28px;border-left:1px solid var(--line)}
+.prices .pk{font-size:10.5px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-dk)}
+.prices h3{font-size:clamp(26px,2.4vw,32px);line-height:1.15}
+.prices .amt{font-family:var(--display);font-size:clamp(30px,3vw,40px);line-height:1;color:var(--ink)}
+.prices .amt small{display:block;margin-top:8px;font-family:var(--body);font-size:12px;letter-spacing:.06em;color:var(--ink-3)}
+.prices p{margin:0;color:var(--ink-2);font-size:15px}
+.prices .alt{font-size:14px;color:var(--ink-3)}
+.addons{list-style:none;margin:40px 0 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:48px;border-top:1px solid var(--line)}
+.addons li{display:flex;justify-content:space-between;gap:24px;padding:16px 0;border-bottom:1px solid var(--line);font-size:15px;color:var(--ink-2)}
+.addons li b{font-weight:500;color:var(--ink);white-space:nowrap}
+.fine{margin-top:24px;font-size:13px;color:var(--ink-3);max-width:80ch}
+@media (max-width:860px){.prices{grid-template-columns:minmax(0,1fr)}.prices li,.prices li+li{padding:28px 0;border-left:0;border-bottom:1px solid var(--line)}.addons{grid-template-columns:minmax(0,1fr)}}

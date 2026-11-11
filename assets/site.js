@@ -114,9 +114,10 @@
       var msg = {
         wedding: "Hi Dani Hill, I'd like to check a wedding date.",
         viewing: "Hi Dani Hill, I'd like to book a site visit.",
-        stay: "Hi Dani Hill, I'd like to plan a stay."
+        stay: "Hi Dani Hill, I'd like to plan a stay.",
+        corporate: "Hi Dani Hill, I'd like to plan a corporate event."
       }[kind] || 'Hi Dani Hill.';
-      var ref = { wedding: 'WED', viewing: 'VIEW', stay: 'STAY' }[kind] || 'GEN';
+      var ref = { wedding: 'WED', viewing: 'VIEW', stay: 'STAY', corporate: 'CORP' }[kind] || 'GEN';
       a.href = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(msg + ' (Ref: ' + ref + '-' + sourceCode() + ')');
     });
   }
@@ -127,7 +128,7 @@
     var a = d.createElement('a');
     a.className = 'wa-fab'; a.target = '_blank'; a.rel = 'noopener';
     a.href = 'https://wa.me/' + WHATSAPP;
-    a.setAttribute('data-wa', /residences/.test(location.pathname) ? 'stay' : 'wedding');
+    a.setAttribute('data-wa', /residences/.test(location.pathname) ? 'stay' : /corporate/.test(location.pathname) ? 'corporate' : 'wedding');
     a.setAttribute('data-loc', 'floating');
     a.setAttribute('aria-label', 'Message Dani Hill on WhatsApp');
     a.innerHTML = '<span class="wa-ico"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.3.8 3.2.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.2-.2-.4-.3Z"/></svg></span><span class="wa-txt">Chat with us</span>';
@@ -145,13 +146,14 @@
   });
 
   // ---- Enquiry forms -------------------------------------------------------------
-  var SUBMIT_EVENT = { wedding: 'wedding_enquiry_submit', viewing: 'viewing_request_submit', stay: 'stay_enquiry_submit' };
+  var SUBMIT_EVENT = { wedding: 'wedding_enquiry_submit', viewing: 'viewing_request_submit', stay: 'stay_enquiry_submit', corporate: 'corporate_enquiry_submit' };
   function guestBand(n) {
     n = parseInt(n, 10); if (!n) return 'unknown';
     return n < 50 ? 'under_50' : n < 100 ? '50_99' : n < 200 ? '100_199' : n <= 300 ? '200_300' : n <= 500 ? '301_500' : 'over_500';
   }
   function safeParams(type, data) {
     if (type === 'wedding') return { guest_band: guestBand(data.guests), event_month: (data.event_date || '').slice(0, 7) || 'unknown', stay_interest: /^Yes/.test(data.stay || '') ? 'yes' : (data.stay === 'No' ? 'no' : 'unsure'), guest_country: data.country || 'not_asked' };
+    if (type === 'corporate') return { guest_band: guestBand(data.guests), event_month: (data.event_date || '').slice(0, 7) || 'unknown', event_format: data.format || 'unknown', stay_interest: /^Yes/.test(data.stay || '') ? 'yes' : (/^No/.test(data.stay || '') ? 'no' : 'unsure') };
     if (type === 'viewing') return { slot_type: /Weekend/.test(data.visit_slot || '') ? 'weekend' : (data.visit_slot ? 'weekday' : 'unknown'), attending: data.attending || 'unknown' };
     return { residence: data.residence || 'unknown', purpose: data.purpose || 'unknown', guest_band: guestBand(data.guests) };
   }
