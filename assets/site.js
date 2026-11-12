@@ -122,13 +122,42 @@
     });
   }
 
+  // ---- What this page is about: wedding, corporate or stay ----------------------------
+  function pageKind() {
+    var f = d.querySelector('form[data-form="corporate"],form[data-form="stay"],form[data-form="wedding"]');
+    if (f) return f.getAttribute('data-form');
+    var p = location.pathname;
+    if (/corporate|team-building|retreat|offsite|leadership|embassy|diplomatic/.test(p)) return 'corporate';
+    if (/residences/.test(p)) return 'stay';
+    return 'wedding';
+  }
+
+  // ---- Floating enquiry button (phones): one tap to the nearest form ------------------
+  function enquireButton() {
+    if (d.querySelector('.enq-fab')) return;
+    var kind = pageKind();
+    var here = d.getElementById('enquire') && d.querySelector('#enquire form[data-form]');
+    var target = here ? '#enquire' : ({ corporate: '/corporate#enquire', stay: '/residences#enquire' }[kind] || '/weddings#enquire');
+    var label = { corporate: 'Get a Proposal', stay: 'Plan a Stay' }[kind] || 'Check a Date';
+    var a = d.createElement('a');
+    a.className = 'enq-fab'; a.href = target; a.textContent = label;
+    a.setAttribute('data-cta', kind + '_enquiry'); a.setAttribute('data-loc', 'floating_enquire');
+    d.body.appendChild(a);
+    setTimeout(function () { a.classList.add('in'); }, 900);
+    // Hide it while the enquiry form itself is on screen.
+    var sec = d.getElementById('enquire');
+    if (sec && w.IntersectionObserver) new IntersectionObserver(function (es) {
+      a.classList.toggle('away', es[0].isIntersecting);
+    }, { threshold: 0.15 }).observe(sec);
+  }
+
   // ---- Floating WhatsApp button (every page) ---------------------------------------
   function waButton() {
     if (d.querySelector('.wa-fab')) return;
     var a = d.createElement('a');
     a.className = 'wa-fab'; a.target = '_blank'; a.rel = 'noopener';
     a.href = 'https://wa.me/' + WHATSAPP;
-    a.setAttribute('data-wa', /residences/.test(location.pathname) ? 'stay' : /corporate/.test(location.pathname) ? 'corporate' : 'wedding');
+    a.setAttribute('data-wa', pageKind());
     a.setAttribute('data-loc', 'floating');
     a.setAttribute('aria-label', 'Message Dani Hill on WhatsApp');
     a.innerHTML = '<span class="wa-ico"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.3.8 3.2.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.2-.2-.4-.3Z"/></svg></span><span class="wa-txt">Chat with us</span>';
@@ -173,7 +202,6 @@
       if (!data.name) problem = 'Please add your name.';
       else if (!data.phone && !data.email) problem = 'Please add a phone number or email so we can reply.';
       else if (data.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) problem = 'Please check your email address.';
-      else if (!f.querySelector('[name="consent"]').checked) problem = 'Please tick the box so we can contact you about this enquiry.';
       if (problem) { show(status, problem, 'error'); return; }
       var payload = { form_type: type, consent: true, page: location.pathname, elapsed_ms: Date.now() - t0, attribution: attribution() };
       Object.keys(data).forEach(function (k) { if (k !== 'consent') payload[k] = data[k]; });
@@ -188,6 +216,8 @@
           clearTimeout(timer);
           if (!res.ok) throw new Error(res.j && res.j.error);
           track(SUBMIT_EVENT[type], Object.assign({ form_type: type }, safeParams(type, data)));
+          // One common event for every form, so a single GTM trigger can count all leads.
+          track('generate_lead', { form_type: type, lead_source: 'website_form' });
           btn.textContent = 'Sent ✓';
           var done = f.parentNode.querySelector('[data-done="' + type + '"]');
           if (done) {
@@ -212,6 +242,7 @@
   function boot() {
     captureAttribution();
     waButton();
+    enquireButton();
     tagWhatsApp();
     d.querySelectorAll('form[data-form]').forEach(initForm);
     d.querySelectorAll('.menu-panel a').forEach(function (x) { x.addEventListener('click', function () { x.closest('details').removeAttribute('open'); }); });

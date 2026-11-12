@@ -42,6 +42,7 @@ Replies to the confirmation email go to the first `NOTIFY_EMAIL` address.
 | `wedding_enquiry_submit` | Server confirmed the enquiry was saved | guest_band, event_month, stay_interest |
 | `viewing_request_submit` | Server confirmed the request was saved | slot_type, attending |
 | `stay_enquiry_submit` | Server confirmed the enquiry was saved | residence, purpose, guest_band |
+| `generate_lead` | Any form saved (all form types) | form_type, lead_source |
 | `whatsapp_click` | Any WhatsApp link clicked | cta_location, wa_type |
 | `brochure_download` | Rates and packages link opened | file_name, cta_location |
 
