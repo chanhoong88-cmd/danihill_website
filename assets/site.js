@@ -202,7 +202,6 @@
       if (!data.name) problem = 'Please add your name.';
       else if (!data.phone && !data.email) problem = 'Please add a phone number or email so we can reply.';
       else if (data.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) problem = 'Please check your email address.';
-      else if (!f.querySelector('[name="consent"]').checked) problem = 'Please tick the box so we can contact you about this enquiry.';
       if (problem) { show(status, problem, 'error'); return; }
       var payload = { form_type: type, consent: true, page: location.pathname, elapsed_ms: Date.now() - t0, attribution: attribution() };
       Object.keys(data).forEach(function (k) { if (k !== 'consent') payload[k] = data[k]; });

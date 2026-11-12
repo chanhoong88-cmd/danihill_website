@@ -468,3 +468,8 @@ img{height:auto}
   .foot{padding-bottom:calc(96px + env(safe-area-inset-bottom,0px))}
 }
 @media print{.enq-fab{display:none}}
+
+/* Privacy line under each form (replaces the consent tick box) */
+.consent-note{grid-column:1/-1;margin:2px 0 0;font-size:12.5px;line-height:1.6;color:rgba(248,245,239,.62)}
+.consent-note a{color:inherit;text-decoration:underline;text-underline-offset:3px}
+.form-light .consent-note{color:var(--ink-3)}
