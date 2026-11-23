@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en-MY">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Opening WhatsApp | Dani Hill - Puncak Dani</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="styles.css">
+<script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<style>
+  .chat-hop{min-height:100vh;display:grid;place-items:center;text-align:center;padding:24px}
+  .chat-hop p{margin:0 0 18px}
+</style>
+</head>
+<body>
+<main class="chat-hop">
+  <div>
+    <p>Opening WhatsApp to chat with the Dani Hill events team…</p>
+    <a class="btn btn-wa" id="wa-go" href="https://wa.me/601162265257">Continue to WhatsApp</a>
+  </div>
+</main>
+<script src="assets/site.js" defer></script>
+<script>
+/* Tracked hop for short links on social posts (e.g. danihill.my/wa1).
+   site.js has already saved the UTM tags; this logs the click and opens WhatsApp
+   with a reference code so the chat can be matched to the post. No personal data. */
+document.addEventListener('DOMContentLoaded', function () {
+  var q = new URLSearchParams(location.search);
+  var type = (q.get('t') || 'wedding').toLowerCase();
+  var ref = (q.get('r') || 'GEN').toUpperCase().replace(/[^A-Z0-9-]/g, '').slice(0, 20);
+  var src = (q.get('utm_source') || 'web').toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 10);
+  var short = { FACEBOOK: 'FB', INSTAGRAM: 'IG' }[src] || src;
+  var msg = {
+    wedding: "Hi Dani Hill, I'd like to check a wedding date.",
+    stay: "Hi Dani Hill, I'd like to plan a stay.",
+    corporate: "Hi Dani Hill, I'd like to plan a corporate event.",
+    dining: "Hi Dani Hill, I'd like to ask about a private dinner.",
+    viewing: "Hi Dani Hill, I'd like to book a site visit."
+  }[type] || 'Hi Dani Hill.';
+  var url = 'https://wa.me/601162265257?text=' + encodeURIComponent(msg + ' (Ref: ' + ref + '-' + short + ')');
+  var a = document.getElementById('wa-go'); a.href = url;
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({ event: 'whatsapp_click', cta_location: 'social_link', wa_type: type, link_ref: ref,
+    utm_source: q.get('utm_source') || '', utm_campaign: q.get('utm_campaign') || '', utm_content: q.get('utm_content') || '' });
+  setTimeout(function () { location.replace(url); }, 700);
+});
+</script>
+</body>
+</html>

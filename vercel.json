@@ -3,6 +3,71 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/m1",
+      "destination": "/?utm_source=facebook&utm_medium=organic_social&utm_campaign=mansion_series_nov26&utm_content=m01_gates",
+      "permanent": false
+    },
+    {
+      "source": "/m3",
+      "destination": "/weddings?utm_source=facebook&utm_medium=organic_social&utm_campaign=mansion_series_nov26&utm_content=m03_grand_hall",
+      "permanent": false
+    },
+    {
+      "source": "/m6",
+      "destination": "/residences?utm_source=facebook&utm_medium=organic_social&utm_campaign=mansion_series_nov26&utm_content=m06_canopy_suite",
+      "permanent": false
+    },
+    {
+      "source": "/m10",
+      "destination": "/residences?utm_source=facebook&utm_medium=organic_social&utm_campaign=mansion_series_nov26&utm_content=m10_twin_room",
+      "permanent": false
+    },
+    {
+      "source": "/wa1",
+      "destination": "/chat?t=wedding&r=M01&utm_source=facebook&utm_medium=organic_social&utm_campaign=mansion_series_nov26&utm_content=m01_gates",
+      "permanent": false
+    },
+    {
+      "source": "/wa2",
+      "destination": "/chat?t=wedding&r=M02&utm_source=facebook&utm_medium=organic_social&utm_campaign=mansion_series_nov26&utm_content=m02_mansion_dusk",
+      "permanent": false
+    },
+    {
+      "source": "/wa4",
+      "destination": "/chat?t=wedding&r=M04&utm_source=facebook&utm_medium=organic_social&utm_campaign=mansion_series_nov26&utm_content=m04_living_room",
+      "permanent": false
+    },
+    {
+      "source": "/wa5",
+      "destination": "/chat?t=dining&r=M05&utm_source=facebook&utm_medium=organic_social&utm_campaign=mansion_series_nov26&utm_content=m05_dining",
+      "permanent": false
+    },
+    {
+      "source": "/wa7",
+      "destination": "/chat?t=stay&r=M07&utm_source=facebook&utm_medium=organic_social&utm_campaign=mansion_series_nov26&utm_content=m07_tea_window",
+      "permanent": false
+    },
+    {
+      "source": "/wa8",
+      "destination": "/chat?t=corporate&r=M08&utm_source=facebook&utm_medium=organic_social&utm_campaign=mansion_series_nov26&utm_content=m08_study",
+      "permanent": false
+    },
+    {
+      "source": "/wa9",
+      "destination": "/chat?t=wedding&r=M09&utm_source=facebook&utm_medium=organic_social&utm_campaign=mansion_series_nov26&utm_content=m09_lawn",
+      "permanent": false
+    },
+    {
+      "source": "/ig",
+      "destination": "/?utm_source=instagram&utm_medium=bio&utm_campaign=profile",
+      "permanent": false
+    },
+    {
+      "source": "/ig-wa",
+      "destination": "/chat?t=wedding&r=BIO&utm_source=instagram&utm_medium=bio&utm_campaign=profile",
+      "permanent": false
+    },
+    {
       "source": "/garden-weddings",
       "destination": "/gallery#weddings",
       "permanent": true
